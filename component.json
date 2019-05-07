@@ -1,0 +1,135 @@
+{
+    "title": "ApiManagementClient",
+    "description": "Use these REST APIs for performing operations on logger entity Azure API Management deployment.The Logger entity in API Management represents an event sink that you can use to log API Management events. Currently the Logger entity supports logging API Management events to Azure EventHub.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/apimanagement-apimloggers/2016-10-10/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow.",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Loggers_ListByService": {
+            "main": "./lib/actions/Loggers_ListByService.js",
+            "title": "Lists a collection of loggers in the specified service instance.",
+            "description": "Lists a collection of loggers in the specified service instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Loggers_ListByService.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Loggers_Delete": {
+            "main": "./lib/actions/Loggers_Delete.js",
+            "title": "Deletes the specified logger.",
+            "description": "Deletes the specified logger.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Loggers_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Loggers_Get": {
+            "main": "./lib/actions/Loggers_Get.js",
+            "title": "Gets the details of the logger specified by its identifier.",
+            "description": "Gets the details of the logger specified by its identifier.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Loggers_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Loggers_Update": {
+            "main": "./lib/actions/Loggers_Update.js",
+            "title": "Updates an existing logger.",
+            "description": "Updates an existing logger.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Loggers_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Loggers_CreateOrUpdate": {
+            "main": "./lib/actions/Loggers_CreateOrUpdate.js",
+            "title": "Creates or Updates a logger.",
+            "description": "Creates or Updates a logger.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Loggers_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

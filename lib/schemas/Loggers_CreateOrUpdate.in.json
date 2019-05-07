@@ -1,0 +1,70 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "loggerid": {
+            "required": true,
+            "type": "string",
+            "maxLength": 256,
+            "pattern": "^[^*#&+:<>?]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameters supplied to the Create Logger operation.",
+            "properties": {
+                "credentials": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The name and SendRule connection string of the event hub.",
+                    "example": {
+                        "connectionString": "Endpoint=endpoint and key from Azure classic portal. This property in credentials is must.",
+                        "name": "Event hub name. This is optional."
+                    },
+                    "type": "object"
+                },
+                "description": {
+                    "description": "Logger description.",
+                    "type": "string"
+                },
+                "isBuffered": {
+                    "description": "Whether records are buffered in the logger before publishing. Default is assumed to be true.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "description": "Logger type.",
+                    "enum": [
+                        "AzureEventHub"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": false,
+                        "name": "LoggerTypeContract"
+                    }
+                }
+            },
+            "required": [
+                "type",
+                "credentials"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
